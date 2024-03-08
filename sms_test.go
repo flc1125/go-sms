@@ -8,8 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-type driver struct {
-}
+type driver struct{}
 
 type driverRequestExtra struct {
 	Code string
@@ -23,7 +22,7 @@ type driverResponseExtra struct {
 
 func (d *driverResponseExtra) IsResponseExtra() {}
 
-func (d *driver) Send(ctx context.Context, req *Request) (*Response, error) {
+func (d *driver) Send(_ context.Context, req *Request) (*Response, error) {
 	extra, ok := req.Extra.(*driverRequestExtra)
 	if !ok {
 		return nil, fmt.Errorf("invalid extra")
