@@ -1,5 +1,9 @@
 package sms
 
+import "errors"
+
+var ErrInvalidRequestExtra = errors.New("sms: invalid request extra")
+
 type RequestExtra interface {
 	IsRequestExtra()
 }
