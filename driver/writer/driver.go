@@ -12,7 +12,7 @@ type Driver struct {
 	writer io.Writer
 }
 
-func NewDriver(writer io.Writer) *Driver {
+func New(writer io.Writer) *Driver {
 	return &Driver{
 		writer: writer,
 	}

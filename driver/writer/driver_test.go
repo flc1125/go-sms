@@ -30,7 +30,7 @@ func (w *writer) Write(p []byte) (n int, err error) {
 func TestDriver(t *testing.T) {
 	w := newWriter(t)
 
-	d := NewDriver(w)
+	d := New(w)
 	resp, err := d.Send(context.Background(), &sms.Request{
 		Phone:   "1234567890",
 		Content: "test",
