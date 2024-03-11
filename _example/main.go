@@ -11,7 +11,7 @@ import (
 
 func main() {
 	s := sms.New(
-		writer.NewDriver(os.Stdout),
+		writer.New(os.Stdout),
 	)
 	resp, err := s.Send(context.Background(), &sms.Request{
 		Phone:   "1234567890",
