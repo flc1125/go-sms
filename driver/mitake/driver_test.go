@@ -54,7 +54,7 @@ func TestParseRequest(t *testing.T) {
 
 func TestSend_Success(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		assert.Equal(t, "GET", r.Method)
+		assert.Equal(t, http.MethodGet, r.Method)
 		assert.Equal(t, "flc", r.URL.Query().Get("username"))
 		assert.Equal(t, "123456", r.URL.Query().Get("password"))
 		assert.Equal(t, "1234567890", r.URL.Query().Get("dstaddr"))
@@ -86,6 +86,12 @@ func TestSend_Success(t *testing.T) {
 
 func TestSend_Fail(t *testing.T) {
 	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		assert.Equal(t, http.MethodGet, r.Method)
+		assert.Equal(t, "flc", r.URL.Query().Get("username"))
+		assert.Equal(t, "123456", r.URL.Query().Get("password"))
+		assert.Equal(t, "1234567890", r.URL.Query().Get("dstaddr"))
+		assert.Equal(t, "test", r.URL.Query().Get("smbody"))
+
 		_, _ = fmt.Fprintln(w, "[1]\nstatuscode=k\nError=custom error")
 	}))
 	defer srv.Close()

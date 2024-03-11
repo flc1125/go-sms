@@ -27,5 +27,4 @@ func (d *Driver) Send(_ context.Context, req *sms.Request) (*sms.Response, error
 		Status:  sms.Success,
 		Message: "writer: send sms success",
 	}, nil
-
 }

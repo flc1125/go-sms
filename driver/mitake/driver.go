@@ -160,7 +160,7 @@ func (d *Driver) decodeResponse(resp *http.Response) (*Response, error) {
 			continue
 		}
 		kv := strings.Split(str, "=")
-		if len(kv) != 2 {
+		if len(kv) != 2 { // nolint:gomnd
 			continue
 		}
 

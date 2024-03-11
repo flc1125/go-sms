@@ -28,7 +28,7 @@ func (w *writer) Write(p []byte) (n int, err error) {
 }
 
 func TestDriver(t *testing.T) {
-	var w = newWriter(t)
+	w := newWriter(t)
 
 	d := NewDriver(w)
 	resp, err := d.Send(context.Background(), &sms.Request{
