@@ -172,6 +172,12 @@ func (d *Driver) decodeResponse(resp *http.Response) (*Response, error) {
 		case "AccountPoint":
 			response.AccountPoint = kv[1]
 		case "Error":
+			// big5 to utf-8
+			if kv[1] != "" {
+				if s, err := traditionalchinese.Big5.NewDecoder().String(kv[1]); err == nil {
+					kv[1] = s
+				}
+			}
 			response.Error = kv[1]
 		}
 	}
