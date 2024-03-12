@@ -19,7 +19,8 @@ func New(writer io.Writer) *Driver {
 }
 
 func (d *Driver) Send(_ context.Context, req *sms.Request) (*sms.Response, error) {
-	if _, err := fmt.Fprintln(d.writer, "writer: send sms", req); err != nil {
+	if _, err := fmt.Fprintf(d.writer,
+		"writer: send sms, the phone: %s, the content: %s\n", req.Phone, req.Content); err != nil {
 		return nil, err
 	}
 
